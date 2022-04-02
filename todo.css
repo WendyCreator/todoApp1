@@ -1,0 +1,22 @@
+.done{
+    background-color: #eee;
+    color: #ccc;
+    text-decoration: line-through;
+}
+
+/* #from-group{
+    padding-left: 2rem;
+} */
+input{
+    margin-left: 1.4rem;
+}
+label,span,#task-title{
+   margin-left:2rem;
+} 
+.error{
+    display: inline-block;
+    margin-left: 3.2rem;
+    margin-top: 5px;
+    background-color: rgba(255, 0, 0, 0.3);
+    color: red;
+}

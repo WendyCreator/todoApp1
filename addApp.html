@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add this Number</title>
+    <link rel="stylesheet" href="../bootstrap4/css/bootstrap.css">
+
+
+    <style>
+        #addResult{
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        #input{
+            transition: opacity 3s;
+            opacity: 0;
+        }
+        #add{
+            transition: opacity 5s;
+            opacity: 0;
+        }
+        .error{
+            transition: all 3s;
+            
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+       <div class="jumbotron">
+           <h1 class="text-center display-4">Add Your Numbers</h1>
+       </div>
+       <div class="form-group">
+           <label for="number">Input the amount of number you want to add</label>
+           <input type="number" class="form-control form-inline" id="number">
+           <input type="submit" class="form-control bg-primary text-white mt-2" value="show Input" id="show">
+           <span class="error alert alert-danger mt-3"></span>
+
+       </div>
+       <h3 class="text-center font-italic font-weight-light bg-dark text-white" id="input">Now input your numbers!</h3>
+       <div class="result form-group" >
+           
+        <!-- <input type="text" class="form-control" id="number-add"> -->
+       </div>
+       <div class="form-group" id="addResult">
+           <input type="submit" class="form-control bg-primary text-white" value="Add Numbers" id="add">
+        </div>
+        <h1 id="ourResult"></h1>
+   </div>
+
+   <script>
+       const number = document.getElementById('number');
+       const result =  document.querySelector('.result');
+       const input =  document.querySelector('#input');
+       const show =  document.querySelector('#show');
+       const add =  document.querySelector('#add');
+       const addResult =  document.querySelector('#addResult');
+       const ourResult =  document.querySelector('#ourResult');
+       const error =  document.querySelector('.error');
+
+       error.style.display = "none"
+
+       show.addEventListener('click', (e)=>{
+         e.preventDefault();
+
+         
+        if(number.value > 20 || number.value == ""){
+            error.style.display = "block"
+            error.innerHTML = "Please check your input...Note, Input Must not be empty! and Input should not be more than 20 Please"
+            setTimeout(()=>{
+                error.style.transform = 'scale(0,0)'
+                
+            }, 3000)
+        
+         
+        } else{
+            let x=0;
+            error.style.display ='none'
+          while(x < number.value){
+        
+            result.innerHTML += `<input type="number" class="form-control mt-2 addies" id="number-add"> `;
+            x++;
+            input.style.opacity = 1
+            addResult.style.opacity = 1
+            add.style.opacity = 1
+        }
+        }
+
+       })
+
+
+       add.addEventListener('click', (e)=>{
+           e.preventDefault()
+          const allNumbers = document.querySelectorAll('.addies');
+          
+          allNumberArray = [...allNumbers];
+          const allNumberArrVal = allNumberArray.map((e)=>{
+              return parseFloat(e.value)
+          })
+
+          console.log(addNumbers(...allNumberArrVal))
+
+          ourResult.innerHTML = `The total sum of the input value is <span class='text-success'>${addNumbers(...allNumberArrVal)}</span>`
+
+           
+
+       })
+
+       const addNumbers =  (...rest) =>{
+        let sum = 0;
+        rest.forEach(n=>{
+        sum += n;
+       })
+       return sum
+       }
+
+
+
+   </script>
+    
+</body>
+</html>
